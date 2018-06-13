@@ -1,0 +1,13 @@
+body{
+  background-color: pink;
+}
+
+.row{
+  width: 75%;
+}
+.positionBox{
+  border-color: black;
+  border-style: solid;
+  border-width: thin;
+  text-align: center;
+}

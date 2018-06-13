@@ -1,3 +1,11 @@
+$(function() {
+  $(".positionBox").click(function(){
+    var boxId = $(this).attr("id");
+    console.log("this is the ID " + boxId);
+  });
+
+});
+
 
 var player = []
 var computer = []
