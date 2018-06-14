@@ -1,5 +1,4 @@
 $(function() {
-  // each time the player clicks send the choice and the player's marker to the eachTurn function
   $(".positionBox").click(function(){
     var boxId = $(this).attr("id");
     eachTurn(boxId, "X");
@@ -7,28 +6,42 @@ $(function() {
   });
 });
 
-//contructor and object for gameBoard
-function Options(){}
-var gameBoard = new Options()
-var playersGameBoard = new Options()
-
 //set up gameboard
-for (i = 1; i <= 9; i ++){
-  gameBoard["position" + i] = "available"
+CurrentGame.prototype.createGameboard = function(){
+  for (i = 1; i <= 9; i ++){
+  this.gameBoard["position" + i] = "available"
+  }
+}
+
+//contructor and object for gameBoard
+function CurrentGame(plays){
+  this.possiblePlays = plays
+  this.playersChoices = []
+  this.gameBoard = []
+  this.createGameboard()
+}
+// var gameBoard = new CurrentGame()
+// var playersGameBoard = new CurrentGame()
+var game = new CurrentGame([1,2,3,4,5,6,7,8,9])
+
+
+
+function createArrayOfPossible(){
+  possibleOptionsII = new Options()
+  for(var i=1; i<10; i++)
+  if(gameBoard["position" + i] === "available"){
+    possibleOptionsII["position" + i] = "available"
+  }
 }
 
 //check to see if choice is available
-function checkForAvailbility(){
-  var number = 1
-  while (i > 1){
-    i+=1
+function computerPick(){
+  for(i=0; i<10; i++){
+    console.log("ran loop")
     var random = [Math.floor(Math.random()*9)]
-    random = "position" + random
-    if(gameBoard[random] === "available"){
+    if(gameBoard["position" + random] === "available"){
       alert("number found"+random)
-      break
-    }
-    if (i=100){
+      eachTurn(random,"O")
       break
     }
   }
@@ -38,22 +51,19 @@ function checkForAvailbility(){
 // possibleOptions[Math.floor(Math.random()*possibleOptions.length)];
 // then "position" + randomNumber
 // } else{
-[Math.floor(Math.random()*9)]
+// [Math.floor(Math.random()*9)]
 //adds current player's choice to the gameBoard
 function eachTurn(choice, marker){
-  gameBoard["position" + choice] = marker
+  var  index = game.possiblePlays.indexOf(parseInt(choice))
+  game.possiblePlays.splice(index, 1)
+  game.playersChoices.push(choice)
   $("#" + choice).text(marker);
   $("#" + choice).off()
-  console.log(gameBoard);
+  console.log(game.playersChoices);
+  console.log("curret possiblePlays: " + game.possiblePlays);
+  // computerPick()
 
 }
-
-//check to see if anyone has won
-// function isThereAWinner(){
-//   if(gameBoard.position1 === "X"){
-//     console.log("player one has an x in position one")
-//   }
-// }
 
 
 var player = []
