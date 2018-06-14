@@ -3,6 +3,10 @@ $(function() {
     var boxId = $(this).attr("id");
     eachTurn(boxId, "X");
     console.log("this is the ID " + boxId);
+
+  });
+  $(".restartWebpage").click(function() {
+    location.reload();
   });
 });
 
@@ -44,7 +48,6 @@ function computerPick(){
   var offense = computerHelper(game.computerChoices)
   var defense = computerHelper(game.playersChoices)
   if (offense > 0){
-   alert("YOU ARE BAD AT THIS GAME")
    eachTurn(offense, "O")
    return
  }
@@ -68,12 +71,14 @@ function eachTurn(choice, marker){
     game.playersChoices.push(parseInt(choice))
     console.log("curret playersChoices " + game.playersChoices);
     if (checkWin(game.playersChoices)=== true) {
+      $(".positionBox").off()
       alert("you win")
     }
 
   } else{
     game.computerChoices.push(parseInt(choice))
     if (checkWin(game.computerChoices)=== true) {
+      $(".positionBox").off()
       alert("I win")
     }
   }
