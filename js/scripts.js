@@ -1,10 +1,35 @@
 $(function() {
+  // each time the player clicks send the choice and the player's marker to the eachTurn function
   $(".positionBox").click(function(){
     var boxId = $(this).attr("id");
+    eachTurn(boxId, "X");
     console.log("this is the ID " + boxId);
   });
-
 });
+
+//contructor and object for gameBoard
+function Options(){}
+var gameBoard = new Options()
+var playersGameBoard = new Options()
+
+//set up gameboard
+for (i = 1; i <= 9; i ++){
+  gameBoard["position" + i] = "available"
+}
+
+//adds player's choice to the gameBoard
+function eachTurn(choice, marker){
+  gameBoard["position" + choice] = "X"
+  console.log(gameBoard);
+
+}
+
+//check to see if anyone has won
+function isThereAWinner(){
+  if(gameBoard.position1 === "X"){
+    console.log("player one has an x in position one")
+  }
+}
 
 
 var player = []
