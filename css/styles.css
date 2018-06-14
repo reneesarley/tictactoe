@@ -10,4 +10,6 @@ body{
   border-style: solid;
   border-width: thin;
   text-align: center;
+  width: 60px;
+  height: 60px;
 }

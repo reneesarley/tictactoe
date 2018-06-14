@@ -17,19 +17,43 @@ for (i = 1; i <= 9; i ++){
   gameBoard["position" + i] = "available"
 }
 
-//adds player's choice to the gameBoard
+//check to see if choice is available
+function checkForAvailbility(){
+  var number = 1
+  while (i > 1){
+    i+=1
+    var random = [Math.floor(Math.random()*9)]
+    random = "position" + random
+    if(gameBoard[random] === "available"){
+      alert("number found"+random)
+      break
+    }
+    if (i=100){
+      break
+    }
+  }
+
+}
+//  this is a function the creates random number then calls checkForAvailbility unction and passes the random number to it
+// possibleOptions[Math.floor(Math.random()*possibleOptions.length)];
+// then "position" + randomNumber
+// } else{
+[Math.floor(Math.random()*9)]
+//adds current player's choice to the gameBoard
 function eachTurn(choice, marker){
-  gameBoard["position" + choice] = "X"
+  gameBoard["position" + choice] = marker
+  $("#" + choice).text(marker);
+  $("#" + choice).off()
   console.log(gameBoard);
 
 }
 
 //check to see if anyone has won
-function isThereAWinner(){
-  if(gameBoard.position1 === "X"){
-    console.log("player one has an x in position one")
-  }
-}
+// function isThereAWinner(){
+//   if(gameBoard.position1 === "X"){
+//     console.log("player one has an x in position one")
+//   }
+// }
 
 
 var player = []
